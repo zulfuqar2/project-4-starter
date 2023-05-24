@@ -8,8 +8,30 @@ const Favorites=()=>{
         title: 'Новый список',
         movies: [
             { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
-        ]
+        ],
+        showForm:false,
+        form:{
+            title: '',
+            year:'',
+            imdbId:'',
+            poster:'',
+            plot:'',
+            rating:'',
+            gehre:'',
+            
+
+
+        }
+
+        
+
+    
     })
+    fetch("http://www.omdbapi.com/?i=tt3896198&apikey=ccfe7fd7").then(data => data.json())
+    .then((data) => {
+           
+console.log(data)
+    });
 
         return (
             <div className="favorites">

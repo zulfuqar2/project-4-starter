@@ -7,7 +7,7 @@ const SearchBox = () => {
   });
 
   const searchLineChangeHandler = (e) => {
-    this.setState({ searchLine: e.target.value });
+    useState({ searchLine: e.target.value });
   };
   const searchBoxSubmitHandler = (e) => {
     e.preventDefault();
@@ -24,14 +24,14 @@ const SearchBox = () => {
             value={searchLine}
             type="text"
             className="search-box__form-input"
-            placeholder="Например, Shawshank Redemption"
+            placeholder=''
             onChange={searchLineChangeHandler}
           />
         </label>
         <button
           type="submit"
           className="search-box__form-submit"
-          disabled={!searchLine}
+          disabled={searchLine}
         >
           Искать
         </button>

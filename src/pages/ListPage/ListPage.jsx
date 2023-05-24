@@ -3,6 +3,11 @@ import "./ListPage.css";
 
 const ListPage = () => {
   const [state, setState] = useState({
+
+    // movies:fetch("http://www.omdbapi.com/?i=tt3896198&apikey=ccfe7fd7").then(data => data,json())
+    // .then(res =>{
+    //  name  {Title}
+    // })
     movies: [{ title: "The Godfather", year: 1972, imdbID: "tt0068646" }],
   });
 
