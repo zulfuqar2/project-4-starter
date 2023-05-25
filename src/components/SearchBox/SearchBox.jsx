@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import "./SearchBox.css";
 
@@ -23,6 +21,11 @@ const SearchBox = () => {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handleAddToFavorites = (movie) => {
+    // Burada, film verilerini kullanarak favori listesine eklemek istediğiniz işlemleri gerçekleştirebilirsiniz.
+    console.log("Favoriye eklenecek film:", movie);
   };
 
   const { searchLine, searchData } = state;
@@ -60,6 +63,13 @@ const SearchBox = () => {
                 alt={movie.Title}
                 className="search-box__movie-poster"
               />
+              <button
+                type="button"
+                className="search-box__movie-add-button"
+                onClick={() => handleAddToFavorites(movie)}
+              >
+                Submit
+              </button>
             </div>
           ))}
         </div>

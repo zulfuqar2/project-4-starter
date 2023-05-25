@@ -39,3 +39,21 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+.search-box__movie-add-button{
+    margin: 10px;
+    background-color: slateblue;
+    color: white;
+    width: 180px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+.search-box__result{
+    box-sizing: border-box;
+    background-color: aquamarine;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 50px;
+
+}
