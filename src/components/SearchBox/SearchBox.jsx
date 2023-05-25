@@ -6,7 +6,7 @@ import "./SearchBox.css";
 const SearchBox = () => {
   const [state, setState] = useState({
     searchLine: "",
-    searchData: null, // Eklediğimiz yeni state
+    searchData: null,
   });
 
   const searchLineChangeHandler = (e) => {
@@ -15,25 +15,15 @@ const SearchBox = () => {
 
   const searchBoxSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(state.searchLine);
-    searchMovieData(state.searchLine); // Film verisini aramak için yeni fonksiyonu çağırıyoruz
-  };
-
-  const searchMovieData = (searchLine) => {
-    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=ccfe7fd7&s=${searchLine}`)
+    fetch(`http://www.omdbapi.com/?s=${state.searchLine}&apikey=ccfe7fd7`)
       .then((response) => response.json())
       .then((data) => {
-        setState({ ...state, searchData: data }); // Arama sonuçlarını state'e kaydediyoruz
+        setState({ ...state, searchData: data.Search });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
-
-  useEffect(() => {
-    fetch("http://www.omdbapi.com/?i=tt3896198&apikey=ccfe7fd7")
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data);
-      });
-  }, []);
 
   const { searchLine, searchData } = state;
 
@@ -41,12 +31,12 @@ const SearchBox = () => {
     <div className="search-box">
       <form className="search-box__form" onSubmit={searchBoxSubmitHandler}>
         <label className="search-box__form-label">
-          İskat filmi adına göre ara:
+          Искать фильм по названию:
           <input
             value={searchLine}
             type="text"
             className="search-box__form-input"
-            placeholder="Film adını ara"
+            placeholder="Search Film name"
             onChange={searchLineChangeHandler}
           />
         </label>
@@ -55,18 +45,23 @@ const SearchBox = () => {
           className="search-box__form-submit"
           disabled={!searchLine}
         >
-          Ara
+          Search
         </button>
       </form>
       {searchData && (
-        <div className="search-box__results">
-          {searchData.Search && searchData.Search.length > 0 ? (
-            searchData.Search.map((movie) => (
-              <div key={movie.imdbID}>{movie.Title}</div>
-            ))
-          ) : (
-            <div>Sonuç bulunamadı.</div>
-          )}
+        <div className="search-box__result">
+          {searchData.map((movie) => (
+            <div key={movie.imdbID} className="search-box__movie">
+              <h2 className="search-box__movie-title">{movie.Title}</h2>
+              <p className="search-box__movie-info">Year: {movie.Year}</p>
+              <p className="search-box__movie-info">Type: {movie.Type}</p>
+              <img
+                src={movie.Poster}
+                alt={movie.Title}
+                className="search-box__movie-poster"
+              />
+            </div>
+          ))}
         </div>
       )}
     </div>
@@ -74,5 +69,3 @@ const SearchBox = () => {
 };
 
 export default SearchBox;
-
-
