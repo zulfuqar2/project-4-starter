@@ -7,21 +7,10 @@ const Favorites = () => {
     movies: [
       { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
     ],
-    showForm: true,
-    form: {
-      title: '',
-      year: '',
-      imdbId: '',
-    }
+
   });
 
-  useEffect(() => {
-    fetch('http://www.omdbapi.com/?i=tt3896198&apikey=ccfe7fd7')
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }, []);
+
 
   return (
     <div className="favorites">
