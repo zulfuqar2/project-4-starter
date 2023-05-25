@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from "react";
 import "./SearchBox.css";
 
@@ -7,10 +10,12 @@ const SearchBox = () => {
   });
 
   const searchLineChangeHandler = (e) => {
-    useState({ searchLine: e.target.value });
+    setState({ searchLine: e.target.value });
   };
+
   const searchBoxSubmitHandler = (e) => {
     e.preventDefault();
+    
   };
 
   const { searchLine } = state;
@@ -19,21 +24,21 @@ const SearchBox = () => {
     <div className="search-box">
       <form className="search-box__form" onSubmit={searchBoxSubmitHandler}>
         <label className="search-box__form-label">
-          Искать фильм по названию:
+        Искать фильм по названию:
           <input
             value={searchLine}
             type="text"
             className="search-box__form-input"
-            placeholder=''
+            placeholder="Search Film name "
             onChange={searchLineChangeHandler}
           />
         </label>
         <button
           type="submit"
           className="search-box__form-submit"
-          disabled={searchLine}
+          disabled={!searchLine}
         >
-          Искать
+          Search
         </button>
       </form>
     </div>
@@ -41,3 +46,4 @@ const SearchBox = () => {
 };
 
 export default SearchBox;
+
